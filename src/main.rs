@@ -3,10 +3,10 @@ extern crate clap;
 use clap::{App, Arg};
 
 fn main() {
-    let user_commands = App::new("MyApp")
+    let user_commands = App::new("Gimme")
         .version(env!("CARGO_PKG_VERSION"))
         .author(crate_authors!())
-        .about("Pull useful data out of some source.")
+        .about("Pull useful data out of your clipboard, a file, or a web page.")
         .version(crate_version!())
         .arg(
             Arg::with_name("version")
@@ -17,7 +17,7 @@ fn main() {
         .arg(
             Arg::with_name("email")
                 .long("email")
-                .help("Get all emails from the source"),
+                .help("Find all emails or email approximates in the source."),
         )
         .get_matches();
 

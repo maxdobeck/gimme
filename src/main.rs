@@ -17,7 +17,17 @@ fn main() {
         .arg(
             Arg::with_name("email")
                 .long("email")
-                .help("Find all emails or email approximates in the source."),
+                .help("Find all emails or email approximates."),
+        )
+        .arg(
+            Arg::with_name("phone")
+            .long("phone")
+            .help("Find all phone numbers."),
+        )
+        .arg(
+            Arg::with_name("error")
+            .long("error")
+            .help("Find all errors, exceptions, stack traces, backtraces, or other common errors.")
         )
         .get_matches();
 

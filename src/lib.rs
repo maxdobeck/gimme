@@ -1,2 +1,2 @@
 pub mod email;
-mod sources;
+pub mod sources;

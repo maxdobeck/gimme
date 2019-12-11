@@ -5,7 +5,7 @@ pub enum Resource {
     URL,
 }
 
-pub fn read(d: Resource) {
+pub fn supported(d: Resource) {
     match d {
         Resource::URL => println!("Parsing from URLs is not supported yet. :/"),
         Resource::Clipboard => println!("Parsing from clipboards is not supported yet. :/"),

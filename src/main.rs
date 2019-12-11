@@ -40,8 +40,7 @@ fn main() {
     if user_commands.is_present("version") {
         println!("gimme version {}", env!("CARGO_PKG_VERSION"))
     }
-    if user_commands.is_present("email") {
-    }
+    if user_commands.is_present("email") {}
     if !user_commands.is_present("source") {
         sources::supported(sources::Resource::Clipboard);
     }

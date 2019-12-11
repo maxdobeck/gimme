@@ -1,17 +1,16 @@
-
 pub trait StringExt {
     fn is_email(&self) -> bool;
 }
 
 impl StringExt for String {
     fn is_email(&self) -> bool {
-        return false
+        return false;
     }
 }
 
 impl StringExt for &str {
     fn is_email(&self) -> bool {
-        return false
+        return false;
     }
 }
 

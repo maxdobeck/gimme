@@ -1,0 +1,16 @@
+name: Main
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Test
+        run: cargo test --verbose
+      - name: Ignored Tests
+        run: cargo test -- --ignored
+      - name: Build
+        run: cargo build --verbose

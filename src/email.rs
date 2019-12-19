@@ -9,29 +9,32 @@ pub trait StringExt {
 impl StringExt for String {
     fn is_email(&self) -> bool {
         let s = &self[..];
-        return false;
+        return strict_email(s);
     }
 }
 
 impl StringExt for &str {
     fn is_email(&self) -> bool {
-        return false;
+        return strict_email(&self);
     }
 }
 
-fn strict_email(text: &str) -> bool{
+fn strict_email(text: &str) -> bool {
     lazy_static! {
-        static ref RE: Regex = Regex::new(r"(?x)
+        static ref RE: Regex = Regex::new(
+            r"(?x)
             @
             [[:word:]]+
             \.
             [[:word:]]+$
-            ").unwrap();
+            "
+        )
+        .unwrap();
     }
     if RE.is_match(text) {
-        return true
+        return true;
     };
-    return false
+    return false;
 }
 
 #[cfg(test)]
@@ -50,5 +53,7 @@ mod tests {
         assert_eq!(super::strict_email("my_emaildomain.com"), false);
         assert_eq!(super::strict_email("my_email@domaincom"), false);
         assert_eq!(super::strict_email("my_emaildomaincom"), false);
+        assert_eq!(super::strict_email("my.email+1@domain.com"), true);
+        assert_eq!(super::strict_email("fname1202@domain.com"), true);
     }
 }

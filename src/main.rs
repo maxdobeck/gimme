@@ -1,7 +1,6 @@
 #[macro_use]
 extern crate clap;
 use clap::{App, Arg};
-use gimme::sources;
 
 fn main() {
     let user_commands = App::new("Gimme")
@@ -18,34 +17,34 @@ fn main() {
         .arg(
             Arg::with_name("email")
                 .long("email")
+                .multiple(false)
+                .takes_value(false)
                 .help("Find all emails or email approximates."),
         )
-        .arg(
-            Arg::with_name("phone")
-                .long("phone")
-                .help("Find all phone numbers."),
-        )
-        .arg(
-            Arg::with_name("error")
-                .long("error")
-                .help("Find any common errors."),
-        )
-        .arg(
-            Arg::with_name("source")
-                .long("source")
-                .help("The source you want to search in.  Defaults to your clipboard."),
-        )
+        // .arg(
+        //     Arg::with_name("phone")
+        //         .long("phone")
+        //         .multiple(false)
+        //         .takes_value(false)
+        //         .help("Find all phone numbers."),
+        // )
+        // .arg(
+        //     Arg::with_name("error")
+        //         .long("error")
+        //         .takes_value(false)
+        //         .multiple(false)
+        //         .help("Find any common errors."),
+        // )
+        // .arg(
+        //     Arg::with_name("source")
+        //         .long("source")
+        //         .short("s")
+        //         .help("The source you want to search in.  Defaults to your clipboard."),
+        // )
         .get_matches();
 
     if user_commands.is_present("version") {
         println!("gimme version {}", env!("CARGO_PKG_VERSION"))
     }
     if user_commands.is_present("email") {}
-    if !user_commands.is_present("source") {
-        sources::supported(sources::Resource::Clipboard);
-    }
-    if user_commands.is_present("source") {
-        sources::supported(sources::Resource::File);
-        sources::supported(sources::Resource::URL);
-    }
 }

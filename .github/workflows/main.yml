@@ -9,7 +9,8 @@ jobs:
       - name: Install Dependencies
         run: | 
           sudo apt-get install xorg-dev
-          sudo apt-get install linux-libc-dev
+          sudo apt-get install libxcb-shape0-dev
+          sudo apt-get install libxcb-xfixes
       - name: Checkout
         uses: actions/checkout@v1
       - name: Test

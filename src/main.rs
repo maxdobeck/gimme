@@ -51,8 +51,10 @@ fn main() {
     let cb = sources::get_clipboard();
 
     if cmds.is_present("email") {
-        if !cmds.is_present("source") {
-            println!("{}", cb)
-        }        
+        if !cmds.is_present("source") && cb.len() != 0 {
+            cb.split_whitespace()
+                .enumerate()
+                .for_each(|(_, word)| println!("{}", word))
+        };
     }
 }

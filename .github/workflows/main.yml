@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: Install Dependencies
         run: sudo apt-get install xorg-dev
+        run: sudo apt-get install linux-libc-dev
       - name: Checkout
         uses: actions/checkout@v1
       - name: Test

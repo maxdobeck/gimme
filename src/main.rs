@@ -51,10 +51,14 @@ fn main() {
     let cb = sources::get_clipboard();
 
     if cmds.is_present("email") {
-        if !cmds.is_present("source") && cb.len() != 0 {
-            cb.split_whitespace()
-                .enumerate()
-                .for_each(|(_, word)| println!("{}", word))
+        if !cmds.is_present("source") {
+            match cb.len() {
+                0 => println!("Clipboard is empty!"),
+                _ => cb
+                    .split_whitespace()
+                    .enumerate()
+                    .for_each(|(_, word)| println!("{}", word)),
+            }
         };
     }
 }

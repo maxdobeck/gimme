@@ -1,9 +1,10 @@
 #[macro_use]
 extern crate clap;
 use clap::{App, Arg};
+use gimme::sources;
 
 fn main() {
-    let user_commands = App::new("Gimme")
+    let cmds = App::new("Gimme")
         .version(env!("CARGO_PKG_VERSION"))
         .author(crate_authors!())
         .about("Pull useful data out of your clipboard, a file, or a web page.")
@@ -35,16 +36,23 @@ fn main() {
         //         .multiple(false)
         //         .help("Find any common errors."),
         // )
-        // .arg(
-        //     Arg::with_name("source")
-        //         .long("source")
-        //         .short("s")
-        //         .help("The source you want to search in.  Defaults to your clipboard."),
-        // )
+        .arg(
+            Arg::with_name("source")
+                .long("source")
+                .short("s")
+                .help("The source you want to search in.  Defaults to your clipboard."),
+        )
         .get_matches();
 
-    if user_commands.is_present("version") {
+    if cmds.is_present("version") {
         println!("gimme version {}", env!("CARGO_PKG_VERSION"))
     }
-    if user_commands.is_present("email") {}
+
+    let cb = sources::get_clipboard();
+
+    if cmds.is_present("email") {
+        if !cmds.is_present("source") {
+            println!("{}", cb)
+        }        
+    }
 }

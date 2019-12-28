@@ -22,26 +22,6 @@ fn main() {
                 .takes_value(false)
                 .help("Find all emails or email approximates."),
         )
-        // .arg(
-        //     Arg::with_name("phone")
-        //         .long("phone")
-        //         .multiple(false)
-        //         .takes_value(false)
-        //         .help("Find all phone numbers."),
-        // )
-        // .arg(
-        //     Arg::with_name("error")
-        //         .long("error")
-        //         .takes_value(false)
-        //         .multiple(false)
-        //         .help("Find any common errors."),
-        // )
-        .arg(
-            Arg::with_name("source")
-                .long("source")
-                .short("s")
-                .help("The source you want to search in.  Defaults to your clipboard."),
-        )
         .get_matches();
 
     if cmds.is_present("version") {
@@ -51,14 +31,12 @@ fn main() {
     let cb = sources::get_clipboard();
 
     if cmds.is_present("email") {
-        if !cmds.is_present("source") {
-            match cb.len() {
-                0 => println!("Clipboard is empty!"),
-                _ => cb
-                    .split_whitespace()
-                    .enumerate()
-                    .for_each(|(_, word)| println!("{}", word)),
-            }
-        };
-    }
+        match cb.len() {
+            0 => println!("Clipboard is empty!"),
+            _ => cb
+                .split_whitespace()
+                .enumerate()
+                .for_each(|(_, word)| println!("{}", word)),
+        }
+    };
 }

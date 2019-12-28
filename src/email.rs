@@ -3,22 +3,19 @@ extern crate regex;
 use regex::Regex;
 
 pub trait StringExt {
-    fn is_email(&self) -> bool;
-}
-
-impl StringExt for String {
-    fn is_email(&self) -> bool {
-        let s = &self[..];
-        return strict_email(s);
-    }
+    fn is_email(&self) -> Option<String>;
 }
 
 impl StringExt for &str {
-    fn is_email(&self) -> bool {
-        return strict_email(&self);
+    fn is_email(&self) -> Option<String> {
+        if strict_email(&self) {
+            return Some(self.to_string());
+        }
+        return None;
     }
 }
 
+/// https://en.wikipedia.org/wiki/Email_address use the invalid email address section for testing
 fn strict_email(text: &str) -> bool {
     lazy_static! {
         static ref RE: Regex = Regex::new(
@@ -43,8 +40,8 @@ mod tests {
 
     #[test]
     fn should_not_be_email() {
-        assert_eq!("hello".to_string().is_email(), false);
-        assert_eq!("hello again".is_email(), false)
+        assert_eq!("hello".is_email(), None);
+        assert_eq!("hello again".is_email(), None)
     }
 
     #[test]

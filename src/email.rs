@@ -15,8 +15,16 @@ impl StringExt for &str {
     }
 }
 
-/// https://en.wikipedia.org/wiki/Email_address use the invalid email address section for testing
+// fn one_at_sym(text: &str) -> bool {
+//     text
+//     return false
+// }
+
 fn strict_email(text: &str) -> bool {
+    let at_symbols = text.chars().filter(|&c| c == '@').count();
+    if at_symbols > 1 {
+        return false;
+    }
     lazy_static! {
         static ref RE: Regex = Regex::new(
             r"(?x)
@@ -46,11 +54,15 @@ mod tests {
 
     #[test]
     fn should_be_email() {
-        assert_eq!(super::strict_email("my_email@domain.com"), true);
+        // use https://en.wikipedia.org/wiki/Email_address for valid/invalid email examples
+        assert_eq!(super::strict_email("my_email@example.com"), true);
         assert_eq!(super::strict_email("my_emaildomain.com"), false);
         assert_eq!(super::strict_email("my_email@domaincom"), false);
         assert_eq!(super::strict_email("my_emaildomaincom"), false);
-        assert_eq!(super::strict_email("my.email+1@domain.com"), true);
+        assert_eq!(super::strict_email("my.email+1@example.com"), true);
         assert_eq!(super::strict_email("fname1202@domain.com"), true);
+        assert_eq!(super::strict_email("user%example.com@example.org"), true);
+        assert_eq!(super::strict_email("@example.com"), true);
+        assert_eq!(super::strict_email("wrong@email@example.com"), false);
     }
 }

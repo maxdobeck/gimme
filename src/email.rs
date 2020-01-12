@@ -21,10 +21,10 @@ impl StringExt for &str {
 // }
 
 fn strict_email(text: &str) -> bool {
-    let at_symbols = text.chars().filter(|&c| c == '@').count();
-    if at_symbols > 1 {
+    if text.chars().filter(|&c| c == '@').count() > 1 {
         return false;
     }
+    
     lazy_static! {
         static ref RE: Regex = Regex::new(
             r"(?x)

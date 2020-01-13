@@ -15,10 +15,13 @@ impl StringExt for &str {
     }
 }
 
-// fn one_at_sym(text: &str) -> bool {
-//     text
-//     return false
-// }
+pub fn find_emails(source: String) -> Vec<String> {
+    let emails: Vec<String> = source
+            .split_whitespace()
+            .filter_map(|word| word.is_email())
+            .collect();
+    return emails;
+}
 
 fn strict_email(text: &str) -> bool {
     if text.chars().filter(|&c| c == '@').count() > 1 {

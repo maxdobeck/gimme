@@ -3,9 +3,11 @@ pull the data you want out of non-traditional sources (sources: clipboard conten
 
 ## Usage
 Print help message.
+
 `gimme --help`
 
 Find all emails in your clipboard (searches clipboard by default)
+
 `gimme --email`
 
 By default will print the output, with each item on its own row, to the terminal.

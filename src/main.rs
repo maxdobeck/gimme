@@ -1,9 +1,9 @@
 #[macro_use]
 extern crate clap;
 use clap::{App, Arg};
-use email::StringExt;
 use gimme::email;
 use gimme::sources;
+use gimme::output;
 
 fn main() {
     let cmds = App::new("Gimme")
@@ -33,10 +33,10 @@ fn main() {
     let cb = sources::get_clipboard();
 
     if cmds.is_present("email") {
-        let emails: Vec<String> = cb
-            .split_whitespace()
-            .filter_map(|word| word.is_email())
-            .collect();
-        println!("{:?}", emails);
+        let emails = email::find_emails(cb);
+        match emails.len() {
+            0 => println!("No emails found"),
+            _ => output::print_emails(emails)
+        }
     };
 }

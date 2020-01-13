@@ -2,5 +2,5 @@
 extern crate lazy_static;
 
 pub mod email;
-pub mod sources;
 pub mod output;
+pub mod sources;

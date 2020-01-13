@@ -2,7 +2,6 @@
 extern crate clap;
 use clap::{App, Arg};
 use gimme::email;
-use gimme::output;
 use gimme::sources;
 
 fn main() {
@@ -22,7 +21,7 @@ fn main() {
                 .long("email")
                 .multiple(false)
                 .takes_value(false)
-                .help("Find all emails or email approximates."),
+                .help("Find all emails"),
         )
         .get_matches();
 
@@ -37,7 +36,7 @@ fn main() {
         let emails: Vec<&str> = email_strings.iter().map(AsRef::as_ref).collect();
         match emails.len() {
             0 => println!("No emails found"),
-            _ => output::print_emails(emails),
+            _ => emails.iter().for_each(|e| println!("{}", e)),
         }
     };
 }

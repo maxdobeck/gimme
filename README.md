@@ -10,7 +10,8 @@ Find all emails in your clipboard (searches clipboard by default)
 
 `gimme --email`
 
-By default will print the output, with each item on its own row, to the terminal.
+Find all potential phone numbers (searches clipboard by default)
+` gimme --phone` 
 
 ### Crate
 https://crates.io/crates/gimme

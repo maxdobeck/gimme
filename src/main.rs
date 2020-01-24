@@ -23,6 +23,13 @@ fn main() {
                 .takes_value(false)
                 .help("Find all emails"),
         )
+        .arg(
+            Arg::with_name("phone")
+                .long("phone")
+                .multiple(false)
+                .takes_value(false)
+                .help("Find all potential phone numbers"),
+        )
         .get_matches();
 
     if cmds.is_present("version") {
@@ -32,11 +39,19 @@ fn main() {
     let cb = sources::get_clipboard();
 
     if cmds.is_present("email") {
-        let email_strings = contacts::find_emails(cb);
-        let emails: Vec<&str> = email_strings.iter().map(AsRef::as_ref).collect();
+        // let email_strings = contacts::find_emails(cb);
+        let emails =  contacts::find_emails(&cb);
         match emails.len() {
             0 => println!("No emails found"),
             _ => emails.iter().for_each(|e| println!("{}", e)),
+        }
+    };
+
+    if cmds.is_present("phone") {
+        let phone_nums = contacts::find_phone_nums(&cb);
+        match phone_nums.len() {
+            0 => println!("No phone numbers found"),
+            _ => phone_nums.iter().for_each(|e| println!("{}", e)),
         }
     };
 }

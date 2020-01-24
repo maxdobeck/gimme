@@ -23,12 +23,20 @@ impl StringExt for &str {
     }
 }
 
-pub fn find_emails(source: String) -> Vec<String> {
+pub fn find_emails(source: &str) -> Vec<String> {
     let emails: Vec<String> = source
         .split_whitespace()
         .filter_map(|word| word.is_email())
         .collect();
     return emails;
+}
+
+pub fn find_phone_nums(source: &str) -> Vec<String> {
+    let phone_nums: Vec<String> = source
+        .split_whitespace()
+        .filter_map(|word| word.is_phone())
+        .collect();
+    return phone_nums;
 }
 
 fn strict_email(text: &str) -> bool {

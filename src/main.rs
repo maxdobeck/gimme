@@ -39,8 +39,7 @@ fn main() {
     let cb = sources::get_clipboard();
 
     if cmds.is_present("email") {
-        // let email_strings = contacts::find_emails(cb);
-        let emails =  contacts::find_emails(&cb);
+        let emails = contacts::find_emails(&cb);
         match emails.len() {
             0 => println!("No emails found"),
             _ => emails.iter().for_each(|e| println!("{}", e)),

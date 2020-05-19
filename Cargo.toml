@@ -1,7 +1,7 @@
 [package]
 name = "gimme"
 version = "0.1.6"
-description = "Library to help people find important things in their clipboard or from another source."
+description = "Pull useful data out of your clipboard."
 repository = "https://github.com/maxdobeck/gimme"
 authors = ["Max Dobeck <max.dobeck@protonmail.com>"]
 edition = "2018"

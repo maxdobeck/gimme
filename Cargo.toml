@@ -6,6 +6,7 @@ repository = "https://github.com/maxdobeck/gimme"
 authors = ["Max Dobeck <max.dobeck@protonmail.com>"]
 edition = "2018"
 license = "MIT"
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

@@ -49,11 +49,13 @@ fn double_check_emails(source: &str) -> Vec<String> {
 }
 
 pub fn find_phone_nums(source: &str) -> Vec<String> {
-    let phone_nums: Vec<String> = source
+    let mut phone_nums: Vec<String> = source
         .split_whitespace()
         .filter_map(|word| word.is_phone())
         .collect();
-    return phone_nums;
+    phone_nums.sort();
+    phone_nums.dedup();
+    phone_nums
 }
 
 fn strict_email(text: &str) -> bool {

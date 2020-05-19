@@ -1,6 +1,6 @@
 [package]
 name = "gimme"
-version = "0.1.4"
+version = "0.1.5"
 description = "Library to help people find important things in their clipboard or from another source."
 repository = "https://github.com/maxdobeck/gimme"
 authors = ["Max Dobeck <max.dobeck@protonmail.com>"]
@@ -14,3 +14,4 @@ clap = "~2.33.1"
 lazy_static = "1.4.0"
 regex = "1"
 clipboard = "0.5.0"
+linkify = "0.4.0"

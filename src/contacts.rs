@@ -1,6 +1,8 @@
 extern crate regex;
+extern crate linkify;
 
 use regex::Regex;
+use linkify::{LinkFinder, LinkKind};
 
 pub trait StringExt {
     fn is_email(&self) -> Option<String>;
@@ -24,11 +26,26 @@ impl StringExt for &str {
 }
 
 pub fn find_emails(source: &str) -> Vec<String> {
-    let emails: Vec<String> = source
+    let mut emails: Vec<String> = source
         .split_whitespace()
         .filter_map(|word| word.is_email())
         .collect();
-    return emails;
+    let mut linkify_emails = double_check_emails(source);
+    linkify_emails.sort();
+    linkify_emails.dedup();
+    emails.append(&mut linkify_emails);
+    emails.sort();
+    emails.dedup();
+    emails
+}
+
+fn double_check_emails(source: &str) -> Vec<String> {
+    let mut link_finder = LinkFinder::new();
+    link_finder.kinds(&[LinkKind::Email]);
+    let linkify_emails: Vec<_> = link_finder.links(source).collect();
+    let email_str: Vec<&str> = linkify_emails.iter().map(|email| email.as_str()).collect();
+    let emails: Vec<String> = email_str.iter().map(|email| email.to_string()).collect();
+    emails
 }
 
 pub fn find_phone_nums(source: &str) -> Vec<String> {
@@ -103,6 +120,13 @@ mod tests {
         assert_eq!(super::strict_email("user%example.com@example.org"), true);
         assert_eq!(super::strict_email("@example.com"), true);
         assert_eq!(super::strict_email("wrong@email@example.com"), false);
+    }
+
+    #[test]
+    fn no_email_duplicates() {
+        let sample = "hello my email is frank.roosevelt@whitehouse.gov, one more time that is frank.roosevelt@whitehouse.gov.  Just to be sure... frank.roosevelt@whitehouse.gov";
+        let emails = super::find_emails(&sample);
+        assert_eq!(emails.len(), 1)
     }
 
     #[test]

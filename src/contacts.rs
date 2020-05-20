@@ -4,11 +4,17 @@ extern crate linkify;
 use regex::Regex;
 use linkify::{LinkFinder, LinkKind};
 
+/// Extend std::String/std::&str to easily call an <Option> is_email or is_phone_number check 
 pub trait StringExt {
+    /// Checks if the string is an email.  
+    /// Returns None or the String
     fn is_email(&self) -> Option<String>;
-    fn is_phone(&self) -> Option<String>;
+    /// Checks if the string is a phone number.
+    /// Returns None or the String 
+    fn is_phone(&self) -> Option<String>;  
 }
 
+/// Extend std::String/std::&str to easily call an <Option> is_email or is_phone_number check 
 impl StringExt for &str {
     fn is_email(&self) -> Option<String> {
         if strict_email(&self) {
@@ -25,6 +31,8 @@ impl StringExt for &str {
     }
 }
 
+/// find_emails accepts some source &str and returns a vector of all 
+/// potential emails, as std::Strings.
 pub fn find_emails(source: &str) -> Vec<String> {
     let mut emails: Vec<String> = source
         .split_whitespace()
@@ -39,6 +47,8 @@ pub fn find_emails(source: &str) -> Vec<String> {
     emails
 }
 
+/// Double_check_emails is a private safety net for `find_emails`
+/// Just to make sure nothing is missed due to my simplistic regex
 fn double_check_emails(source: &str) -> Vec<String> {
     let mut link_finder = LinkFinder::new();
     link_finder.kinds(&[LinkKind::Email]);
@@ -48,6 +58,9 @@ fn double_check_emails(source: &str) -> Vec<String> {
     emails
 }
 
+/// find_phone_nums goes through every str in the argument and performs
+/// simple regex to evalute if they are potentially a phone number
+/// returns Vec<String> of results
 pub fn find_phone_nums(source: &str) -> Vec<String> {
     let mut phone_nums: Vec<String> = source
         .split_whitespace()
@@ -58,6 +71,7 @@ pub fn find_phone_nums(source: &str) -> Vec<String> {
     phone_nums
 }
 
+/// Is it an email?
 fn strict_email(text: &str) -> bool {
     if text.chars().filter(|&c| c == '@').count() > 1 {
         return false;
@@ -80,6 +94,7 @@ fn strict_email(text: &str) -> bool {
     return false;
 }
 
+/// Simple regex check for phone numbers
 fn valid_phone(text: &str) -> bool {
     lazy_static! {
         static ref RE: Regex = Regex::new(

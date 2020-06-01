@@ -1,7 +1,5 @@
 # Gimme
-Pull the data you want out of non-traditional sources (sources: clipboard content, a URL, a set of files). Current focus is on clipboard support.  Emails first followed by phone numbers.
-
-For example, if you have a ton of text to go through like in a large email thread, marketing page, csv sheet, whatever... and you need a short list of emails, then copy everything to your clipboard, run `gimme`, and take a look at the sorted output!
+Tired of sifting through webpages or long emails for someone's contact info? Pull email/phone numbers out of your clipboard. CTRL + A some large document or web page, then run `gimme` to show anything that could be a phone number or email.
 
 ## Install + Dev Dependencies
 Linux you'll need these to compile:

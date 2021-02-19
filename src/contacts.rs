@@ -43,12 +43,16 @@ pub fn find_emails(source: &str) -> Vec<String> {
     linkify_emails.dedup();
     emails.append(&mut linkify_emails);
     emails.sort();
+    for email in &mut emails {
+        *email = email.to_lowercase();
+    }
     emails.dedup();
     emails
 }
 
-/// Double_check_emails is a private safety net for `find_emails`
-/// Just to make sure nothing is missed due to my simplistic regex
+/// Double_check_emails is a safety net that uses LinkFinder
+/// Just to make sure nothing is missed due to the simplistic regex in `find_emails`
+/// TODO rename this or replace the regex fn i wrote
 fn double_check_emails(source: &str) -> Vec<String> {
     let mut link_finder = LinkFinder::new();
     link_finder.kinds(&[LinkKind::Email]);
@@ -114,11 +118,12 @@ fn valid_phone(text: &str) -> bool {
     };
     return false;
 }
-
+// TODO move these out into a separate test file
 #[cfg(test)]
 mod tests {
     use super::StringExt;
 
+    // email tests
     #[test]
     fn should_not_be_email() {
         assert_eq!("hello".is_email(), None);
@@ -143,9 +148,14 @@ mod tests {
     fn no_email_duplicates() {
         let sample = "hello my email is frank.roosevelt@whitehouse.gov, one more time that is frank.roosevelt@whitehouse.gov.  Just to be sure... frank.roosevelt@whitehouse.gov";
         let emails = super::find_emails(&sample);
-        assert_eq!(emails.len(), 1)
+        assert_eq!(emails.len(), 1);
+
+        let case_sensitive = "my tall email is EXAMPLE@EXAMPLE.COM. My short email is example@example.com.";
+        let case_emails = super::find_emails(&case_sensitive);
+        assert_eq!(case_emails.len(),1);
     }
 
+    // phone number tests
     #[test]
     fn valid_phone_number() {
         vec![

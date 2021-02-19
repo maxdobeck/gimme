@@ -1,5 +1,9 @@
 # Gimme
-Tired of sifting through webpages or long emails for someone's contact info? Pull email/phone numbers out of your clipboard. CTRL + A some large document or web page, then run `gimme` to show anything that could be a phone number or email.
+Tired of sifting through webpages or long emails for someone's contact info? Pull email/phone numbers out of your clipboard.
+
+1. CTRL + A some large document or web page
+1. Run `gimme --email` (or `--phone`) to parse your clipboard for any phone numbers or emails.
+1. gimme should spit out anything it finds in the terminal
 
 ### Install + Dev Dependencies
 Linux you'll need these to compile:

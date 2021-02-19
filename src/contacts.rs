@@ -52,6 +52,7 @@ pub fn find_emails(source: &str) -> Vec<String> {
 
 /// Double_check_emails is a safety net that uses LinkFinder
 /// Just to make sure nothing is missed due to the simplistic regex in `find_emails`
+/// TODO rename this or replace the regex fn i wrote
 fn double_check_emails(source: &str) -> Vec<String> {
     let mut link_finder = LinkFinder::new();
     link_finder.kinds(&[LinkKind::Email]);

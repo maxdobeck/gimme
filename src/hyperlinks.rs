@@ -2,6 +2,9 @@ extern crate linkify;
 
 use linkify::{LinkFinder, LinkKind};
 
+
+/// `find_links` will search the source str for any
+/// hypertext links (URLs)
 pub fn find_links(source: &str) -> Vec<String> {
     let mut link_finder = LinkFinder::new();
     link_finder.kinds(&[LinkKind::Url]);
@@ -14,10 +17,15 @@ pub fn find_links(source: &str) -> Vec<String> {
 
 #[cfg(test)]
 mod tests {
-    // basic url hyperlink test
     #[test]
     fn should_return_one_url() {
         let link = super::find_links("https://en.wikipedia.org/wiki/Link_(The_Legend_of_Zelda)");
         assert_eq!(link.len(), 1);
+    }
+
+    #[test]
+    fn no_duplicate_urls() {
+        let link = super::find_links("example.com, example.com, https://example.com");
+        assert_eq!(link.len(), 1)
     }
 }

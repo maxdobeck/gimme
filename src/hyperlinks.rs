@@ -1,0 +1,21 @@
+extern crate linkify;
+
+use linkify::{LinkFinder, LinkKind};
+
+pub fn find_links(source: &str) -> Vec<String> {
+    let mut link_finder = LinkFinder::new();
+    link_finder.kinds(&[LinkKind::Url]);
+    let linkify_urls: Vec<_> = link_finder.links(source).collect();
+    let urls = linkify_urls.iter().map(|link| link.as_str().to_string()).collect();
+    urls
+}
+
+#[cfg(test)]
+mod tests {
+    // basic url hyperlink test
+    #[test]
+    fn should_return_one_url() {
+        let link = super::find_links("https://en.wikipedia.org/wiki/Link_(The_Legend_of_Zelda)");
+        assert_eq!(link.len(), 1);
+    }
+}

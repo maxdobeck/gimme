@@ -3,6 +3,7 @@ extern crate clap;
 use clap::{App, Arg};
 use gimme::contacts;
 use gimme::sources;
+use gimme::hyperlinks;
 
 fn main() {
     let cmds = App::new("Gimme")
@@ -30,6 +31,13 @@ fn main() {
                 .takes_value(false)
                 .help("Find all potential phone numbers"),
         )
+        .arg(
+            Arg::with_name("link")
+            .long("link")
+            .multiple(false)
+            .takes_value(false)
+            .help("Find all URL hyperlinks")
+        )
         .get_matches();
 
     if cmds.is_present("version") {
@@ -50,7 +58,15 @@ fn main() {
         let phone_nums = contacts::find_phone_nums(&cb);
         match phone_nums.len() {
             0 => println!("No phone numbers found"),
-            _ => phone_nums.iter().for_each(|e| println!("{}", e)),
+            _ => phone_nums.iter().for_each(|p| println!("{}", p)),
         }
     };
+
+    if cmds.is_present("link") {
+        let links = hyperlinks::find_links(&cb);
+        match links.len() {
+            0 => println!("No links found"),
+            _ => links.iter().for_each( |l| println!("{}", l)),
+        }
+    }
 }

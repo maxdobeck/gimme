@@ -1,6 +1,9 @@
 name: Main
 
-on: [push]
+on: 
+  push:
+  paths-ignore:
+    - notes.md
 
 jobs:
   linux-build:

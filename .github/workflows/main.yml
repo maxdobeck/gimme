@@ -1,7 +1,7 @@
 name: Main
 
 on: 
-  push:
+  [push]
   paths-ignore:
     - notes.md
 

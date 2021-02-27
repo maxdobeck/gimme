@@ -32,6 +32,14 @@ jobs:
             asset_name: <name>-macos
 
     steps:
+    - name: Install Dependencies
+      run: |
+        if ["$RUNNER_OS" == "Linux"]; then
+        sudo apt-get install xorg-dev
+        sudo apt-get install libxcb-shape0-dev
+        sudo apt-get install libxcb-xfixes0-dev
+        fi
+    
     - uses: actions/checkout@v1
 
     - uses: actions-rs/toolchain@v1

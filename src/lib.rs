@@ -10,3 +10,6 @@ extern crate lazy_static;
 pub mod contacts;
 /// Where to search for data, clipboard is only supported source rn
 pub mod sources;
+
+/// URL type hyperlinks aka links
+pub mod hyperlinks;

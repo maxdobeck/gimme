@@ -2,6 +2,7 @@ notes.txt
 future features, wip stuff
 
 ### Web Scraping
+http://books.toscrape.com/catalogue/page-2.html
 
 Use Rust?
 https://kadekillary.work/post/webscraping-rust/

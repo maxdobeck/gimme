@@ -13,3 +13,7 @@ https://rust-lang-nursery.github.io/rust-cookbook/web/scraping.html
 Python
 selenium and some beatifulsoup?
 https://scrapy.org scrapy is the default here for spidering/scraping.  Not sure rust offers any advantages.
+
+
+### Automatic releases for each new version
+https://daniellockyer.com/automated-rust-releases/ seems like the best approach

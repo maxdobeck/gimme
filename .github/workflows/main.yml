@@ -2,8 +2,8 @@ name: Test and Compile
 
 on: 
   push:
-    - tags-ignore: '*'
-    - paths-ignore: notes.md
+    tags-ignore: '*'
+    paths-ignore: notes.md
 
 jobs:
   linux-build:

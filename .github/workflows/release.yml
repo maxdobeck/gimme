@@ -20,15 +20,15 @@ jobs:
         include:
           - name: linux
             os: ubuntu-latest
-            artifact_name: target/release/gimme
+            artifact_name: target/release/gimme-linux
             asset_name: gimme-linux
           - name: windows
             os: windows-latest
-            artifact_name: target/release/gimme.exe
+            artifact_name: target/release/gimme-win.exe
             asset_name: gimme-windows
           - name: macos
             os: macos-latest
-            artifact_name: target/release/gimme
+            artifact_name: target/release/gimme-mac
             asset_name: gimme-macos
 
     steps:

@@ -20,15 +20,15 @@ jobs:
         include:
           - name: linux
             os: ubuntu-latest
-            artifact_name: target/release/gimme-linux
+            artifact_name: target/release/gimme
             asset_name: gimme-linux
           - name: windows
             os: windows-latest
-            artifact_name: target/release/gimme-win.exe
+            artifact_name: target/release/gimme.exe
             asset_name: gimme-windows
           - name: macos
             os: macos-latest
-            artifact_name: target/release/gimme-mac
+            artifact_name: target/release/gimme
             asset_name: gimme-macos
 
     steps:
@@ -60,6 +60,6 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          ${{ matrix.artifact_name }}
+          ${{ matrix.asset_name }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

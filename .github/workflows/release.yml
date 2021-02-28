@@ -49,7 +49,7 @@ jobs:
     - name: Build
       run: cargo build --release --locked
 
-    - name: Upload binaries as atrifacts
+    - name: Upload binaries as artifacts
       uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.asset_name }}

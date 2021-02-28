@@ -8,7 +8,7 @@ Tired of sifting through webpages or long emails for someone's contact info? Pul
 1. gimme should spit out anything it finds in the terminal
 
 ### Usage
-Use `cargo install gimme`.
+Use `cargo install gimme` or build from source with `cargo build`.
 
 `gimme --help`
 

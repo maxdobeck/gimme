@@ -2,8 +2,6 @@ name: Test and Compile
 
 on: 
   push:
-    tags-ignore:
-      - 'v*'
     paths-ignore:
       - notes.md
 

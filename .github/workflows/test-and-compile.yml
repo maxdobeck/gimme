@@ -4,6 +4,7 @@ on:
   push:
     paths-ignore:
       - notes.md
+      - README.md
 
 jobs:
   linux-build:

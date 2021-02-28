@@ -58,6 +58,6 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        files: ${{ matrix.asset_name }}
+        files: ${{ matrix.artifact_name }}-${{ matrix.os }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,7 @@
 name: Release
 # from https://daniellockyer.com/automated-rust-releases/
 on:
+  workflow_dispatch:
   push:
     tags:
       - '*'

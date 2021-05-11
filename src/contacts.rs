@@ -20,14 +20,14 @@ impl StringExt for &str {
         if strict_email(&self) {
             return Some(self.to_string());
         }
-        return None;
+        None
     }
 
     fn is_phone(&self) -> Option<String> {
         if valid_phone(&self) {
             return Some(self.to_string());
         }
-        return None;
+        None
     }
 }
 
@@ -93,9 +93,9 @@ fn strict_email(text: &str) -> bool {
         .unwrap();
     }
     if RE.is_match(text) {
-        return true;
+        return true
     };
-    return false;
+    false
 }
 
 /// Simple regex check for phone numbers
@@ -114,9 +114,9 @@ fn valid_phone(text: &str) -> bool {
         .unwrap();
     }
     if RE.is_match(text) {
-        return true;
-    };
-    return false;
+        return true
+    }
+    false
 }
 // TODO move these out into a separate test file
 #[cfg(test)]

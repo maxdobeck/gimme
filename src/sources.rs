@@ -7,7 +7,7 @@ use clipboard::ClipboardProvider;
 pub fn get_clipboard() -> String {
     let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
     match ctx.get_contents() {
-        Ok(contents) => return contents,
+        Ok(contents) => contents,
         Err(e) => panic!("{}", e),
-    };
+    }
 }

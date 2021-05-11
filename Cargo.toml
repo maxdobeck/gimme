@@ -1,8 +1,8 @@
 [package]
 name = "gimme"
-version = "0.1.11"
+version = "0.1.12"
 description = "Pull useful data out of your clipboard."
-keywords = ["cli", "email", "clipboard"]
+keywords = ["cli", "clipboard"]
 categories = ["text-processing", "parsing", "command-line-utilities"]
 repository = "https://github.com/maxdobeck/gimme"
 authors = ["Max Dobeck <msdobeck@gmail.com>"]

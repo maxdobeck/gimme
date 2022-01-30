@@ -1,40 +1,35 @@
-#[macro_use]
-extern crate clap;
-use clap::{App, Arg};
+use clap::{Arg, app_from_crate};
 use gimme::contacts;
 use gimme::sources;
 use gimme::hyperlinks;
 
 fn main() {
-    let cmds = App::new("Gimme")
-        .version(env!("CARGO_PKG_VERSION"))
-        .author(crate_authors!())
-        .about("Pull useful data out of your clipboard, a file, or a web page.")
-        .version(crate_version!())
+    include_str!("../Cargo.toml");
+    let cmds = app_from_crate!()
         .arg(
-            Arg::with_name("version")
+            Arg::new("version")
                 .long("version")
                 .help("Print the current version of Gimme")
                 .takes_value(false),
         )
         .arg(
-            Arg::with_name("email")
+            Arg::new("email")
                 .long("email")
-                .multiple(false)
                 .takes_value(false)
+                .multiple_values(false)
                 .help("Find all emails"),
         )
         .arg(
-            Arg::with_name("phone")
+            Arg::new("phone")
                 .long("phone")
-                .multiple(false)
                 .takes_value(false)
-                .help("Find all potential phone numbers"),
+                .help("Find all potential phone numbers")
+                .multiple_values(false),
         )
         .arg(
-            Arg::with_name("link")
+            Arg::new("link")
             .long("link")
-            .multiple(false)
+            .multiple_values(false)
             .takes_value(false)
             .help("Find all URL hyperlinks")
         )

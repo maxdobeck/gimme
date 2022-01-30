@@ -1,6 +1,6 @@
 [package]
 name = "gimme"
-version = "0.1.12"
+version = "0.1.13"
 description = "Pull useful data out of your clipboard."
 keywords = ["cli", "clipboard"]
 categories = ["text-processing", "parsing", "command-line-utilities"]

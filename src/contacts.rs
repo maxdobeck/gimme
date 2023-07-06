@@ -6,7 +6,7 @@ use regex::Regex;
 
 /// Extend std::String/std::&str to easily call an <Option> is_email or is_phone_number check
 pub trait StringExt {
-    /// Checks if the string is an email.  
+    /// Checks if the string is an email.
     /// Returns None or the String
     fn is_email(&self) -> Option<String>;
     /// Checks if the string is a phone number.
@@ -17,14 +17,14 @@ pub trait StringExt {
 /// Extend std::String/std::&str to easily call an <Option> is_email or is_phone_number check
 impl StringExt for &str {
     fn is_email(&self) -> Option<String> {
-        if strict_email(&self) {
+        if strict_email(self) {
             return Some(self.to_string());
         }
         None
     }
 
     fn is_phone(&self) -> Option<String> {
-        if valid_phone(&self) {
+        if valid_phone(self) {
             return Some(self.to_string());
         }
         None

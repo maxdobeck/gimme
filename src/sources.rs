@@ -2,7 +2,7 @@ extern crate clipboard;
 use clipboard::ClipboardContext;
 use clipboard::ClipboardProvider;
 
-/// Get the contents of the clipboard.  Works on all systems but may require 
+/// Get the contents of the clipboard.  Works on all systems but may require
 /// dependencies on x11 in linux environments.
 pub fn get_clipboard() -> String {
     let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();

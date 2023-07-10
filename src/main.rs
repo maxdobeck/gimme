@@ -1,7 +1,7 @@
-use clap::{Arg, app_from_crate};
+use clap::{app_from_crate, Arg};
 use gimme::contacts;
-use gimme::sources;
 use gimme::hyperlinks;
+use gimme::sources;
 
 fn main() {
     include_str!("../Cargo.toml");
@@ -28,10 +28,10 @@ fn main() {
         )
         .arg(
             Arg::new("link")
-            .long("link")
-            .multiple_values(false)
-            .takes_value(false)
-            .help("Find all URL hyperlinks")
+                .long("link")
+                .multiple_values(false)
+                .takes_value(false)
+                .help("Find all URL hyperlinks"),
         )
         .get_matches();
 
@@ -61,7 +61,7 @@ fn main() {
         let links = hyperlinks::find_links(&cb);
         match links.len() {
             0 => println!("No links found"),
-            _ => links.iter().for_each( |l| println!("{}", l)),
+            _ => links.iter().for_each(|l| println!("{}", l)),
         }
     }
 }

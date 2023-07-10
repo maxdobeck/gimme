@@ -1,20 +1,20 @@
-extern crate regex;
 extern crate linkify;
+extern crate regex;
 
-use regex::Regex;
 use linkify::{LinkFinder, LinkKind};
+use regex::Regex;
 
-/// Extend std::String/std::&str to easily call an <Option> is_email or is_phone_number check 
+/// Extend std::String/std::&str to easily call an <Option> is_email or is_phone_number check
 pub trait StringExt {
     /// Checks if the string is an email.  
     /// Returns None or the String
     fn is_email(&self) -> Option<String>;
     /// Checks if the string is a phone number.
-    /// Returns None or the String 
-    fn is_phone(&self) -> Option<String>;  
+    /// Returns None or the String
+    fn is_phone(&self) -> Option<String>;
 }
 
-/// Extend std::String/std::&str to easily call an <Option> is_email or is_phone_number check 
+/// Extend std::String/std::&str to easily call an <Option> is_email or is_phone_number check
 impl StringExt for &str {
     fn is_email(&self) -> Option<String> {
         if strict_email(&self) {
@@ -31,7 +31,7 @@ impl StringExt for &str {
     }
 }
 
-/// find_emails accepts some source &str and returns a vector of all 
+/// find_emails accepts some source &str and returns a vector of all
 /// potential emails, as std::Strings.
 pub fn find_emails(source: &str) -> Vec<String> {
     let mut emails: Vec<String> = source
@@ -93,7 +93,7 @@ fn strict_email(text: &str) -> bool {
         .unwrap();
     }
     if RE.is_match(text) {
-        return true
+        return true;
     };
     false
 }
@@ -114,7 +114,7 @@ fn valid_phone(text: &str) -> bool {
         .unwrap();
     }
     if RE.is_match(text) {
-        return true
+        return true;
     }
     false
 }
@@ -150,9 +150,10 @@ mod tests {
         let emails = super::find_emails(&sample);
         assert_eq!(emails.len(), 1);
 
-        let case_sensitive = "my tall email is EXAMPLE@EXAMPLE.COM. My short email is example@example.com.";
+        let case_sensitive =
+            "my tall email is EXAMPLE@EXAMPLE.COM. My short email is example@example.com.";
         let case_emails = super::find_emails(&case_sensitive);
-        assert_eq!(case_emails.len(),1);
+        assert_eq!(case_emails.len(), 1);
     }
 
     // phone number tests

@@ -1,6 +1,6 @@
 [package]
 name = "gimme"
-version = "0.1.13"
+version = "0.1.14"
 description = "Pull useful data out of your clipboard."
 keywords = ["cli", "clipboard"]
 categories = ["text-processing", "parsing", "command-line-utilities"]
@@ -13,8 +13,9 @@ readme = "README.md"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "~3.2.13", features = ["cargo"] }
+clap = { version = "~4.3.11", features = ["cargo"] }
 lazy_static = "1.4.0"
 regex = "1"
 clipboard = "0.5.0"
-linkify = "0.9.0"
+linkify = "0.10.0"
+atty = "0.2.14"

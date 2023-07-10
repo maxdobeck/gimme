@@ -1,6 +1,6 @@
 //! # Gimme
-//! 
-//! A library and binary cli for finding things in a bunch of text.  CTRL + A, CTRL + C to pull everything into your clipboard. 
+//!
+//! A library and binary cli for finding things in a bunch of text.  CTRL + A, CTRL + C to pull everything into your clipboard.
 //! Search your clipboard and return any useful data like emails, phone numbers, etc.
 
 #[macro_use]

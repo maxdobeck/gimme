@@ -26,7 +26,11 @@ fn main() {
         )
         .get_matches();
 
-    let cb: String = sources::get_clipboard();
+    let cb: String = if atty::is(atty::Stream::Stdin) {
+        sources::get_clipboard()
+    } else {
+        sources::get_stdin()
+    };
 
     if cmds.get_flag("email") {
         let emails = contacts::find_emails(&cb);
